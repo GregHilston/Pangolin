@@ -1,6 +1,12 @@
 class Commander():
+    def listen_message(self, text):
+        """
+        Listens to all messages
+        """
+        pass
 
-    def handle_command(command, channel):
+
+    def handle_command(self, command, channel):
         """
             Receives commands directed at the bot and determines if they
             are valid commands. If so, then acts on the commands. If not,

@@ -4,19 +4,20 @@ class Parser:
         self._AT_BOT = AT_BOT
 
 
-    def parse(self, json):
+    def parse(self, json_list):
         """
-            Returns author name and messaged directed at this Bot, otherwise
-            returns None
+        Returns the dictionary of a message, non-message types return None
         """
-        print("json {}".format(str(json)))
 
-        if json and len(json) > 0:
-            for val in json:
-                print("val {}".format(str(val)))
+        if json_list and len(json_list) > 0:
+            for dictionary in json_list:
 
-                if val and 'content' in json and self._AT_BOT in output['content']:
-                    # return text after the @ mention, whitespace removed
-                    return output['content'].split(self._AT_BOT)[1].strip().lower(), \
-                           output['channel']
-        return None, None
+                if dictionary:
+                    json_type = str(dictionary["type"])
+
+                    if json_type == "message":
+                        text = str(dictionary["text"])
+
+                        print("message received! content {}".format(text))
+                        return dictionary
+        return None
